@@ -1,0 +1,7 @@
+.idea/
+node_modules/
+test/
+.jsdoc.json
+.gitignore
+*.lock
+coverage/
