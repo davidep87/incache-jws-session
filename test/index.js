@@ -42,6 +42,12 @@ describe('check', function() {
     assert.equal(result.isLogged, false)
   });
 
+  it('should not decode the token', async () => {
+    let result = await auth.check('JIUzI1NiJ9.eyJpc3MiOiJ3d')
+    console.log(result)
+    assert.equal(result.isLogged, false)
+  })
+
   it('should return object with not valid token message', async () => {
     const session = {
         user: 1,
