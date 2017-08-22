@@ -38,7 +38,7 @@ const auth = new Session(config)
 const token = await auth.createToken(1, 'user')
 ```
 
-##### Store the new session token in redis
+##### Store the new session token
 
 ```javascript
 
