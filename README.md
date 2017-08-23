@@ -33,6 +33,7 @@ const auth = new Session(config)
 ```
 
 ##### Generate a new token passing the user ID and the user type
+With user type intends for example ‘root’, ‘admin’, ‘user’, ‘visitor’, etc
 
 ```javascript
 const token = await auth.createToken(1, 'user')
