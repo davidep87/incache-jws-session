@@ -20,6 +20,12 @@ describe('createToken', function() {
 
 describe('decodeToken', function() {
 
+  it('should return false', async () => {
+    let result = await auth.decodeToken()
+    console.log(result)
+    assert.equal(result, false)
+  });
+
   it('should not return a decoded token', async () => {
     let result = await auth.decodeToken(token.substring(0, 10))
     console.log(result)
