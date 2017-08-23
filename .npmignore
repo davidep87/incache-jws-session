@@ -5,3 +5,4 @@ test/
 .gitignore
 *.lock
 coverage/
+version-to-tag.sh
