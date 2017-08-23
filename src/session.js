@@ -1,14 +1,16 @@
 const jws = require('jws')
 const InCache = require('incache')
-const store = new InCache()
+const store = new InCache({
+    storeName: 'jws-session'
+})
 const TOKEN_NOT_VALID = 'Token is not valid'
 
 class Session {
   /**
    * constructor config
-   * @param  {string} secret a secret key used to generate the token
-   * @param  {string} serverHost hostname of the server
-   * @param  {int}    time minutes of life for the token
+   * @param  {string} config.secret a secret key used to generate the token
+   * @param  {string} config.serverHost hostname of the server
+   * @param  {int}    config.time minutes of life for the token
    */
   constructor(config){
     this.secret = config.secret
@@ -18,9 +20,9 @@ class Session {
 
   /**
    * insert admin or user session
-   * @param  {int}  session.user id of the user
-   * @param  {string}  session.token generated token
-   * @param  {unixtime}  session.exp expiration time of token
+   * @param  {int}    session.user id of the user
+   * @param  {string} session.token generated token
+   * @param  {int}    session.exp expiration time of token
    */
   insert(session){
     store.set(`${session.type}-${session.user}`, session)
@@ -37,8 +39,7 @@ class Session {
 
   /**
    * check the token status
-   * @param  {string}  token        user token
-   * @param  {object}  error        internal error list params
+   * @param  {string}  token user token
    * @return {Object}  isLogged: boolean, token: 'string', message: 'string', updated: boolean
    */
   async check(token){
@@ -74,8 +75,9 @@ class Session {
 
   /**
    * createToken
-   * @param  {type}  id user id or anything that you like to use as identificator
-   * @return {string}   token
+   * @param  {int}    id user id or anything that you like to use as identificator
+   * @param  {string} type user type for example ‘root’, ‘admin’, ‘user’, ‘visitor’, etc
+   * @return {string} token
    */
   async createToken(id, type) {
     const time = new Date()
@@ -93,9 +95,14 @@ class Session {
 
   /**
    * decodeToken return the information crypted inside the token
-   * @param  {type}    token description
-   * @return {decoded} contain serverHost, expiration date and an identificator
+   * @param  {type}   token description
+   * @return {Object} contain serverHost, expiration date and an identificator
    */
+    /**
+     *
+     * @param token
+     * @returns {Promise.<boolean>}
+     */
   async decodeToken(token) {
   	let decoded = false
     try {
