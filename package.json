@@ -1,6 +1,6 @@
 {
   "name": "incache-jws-session",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "store json web signature sessions in cache",
   "main": "index.js",
   "scripts": {
