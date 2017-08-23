@@ -15,7 +15,7 @@
   "author": "Davide Polano",
   "license": "MIT",
   "dependencies": {
-    "incache": "^4.0.0",
+    "incache": "^4.0.2",
     "jws": "^3.1.4"
   },
   "devDependencies": {
