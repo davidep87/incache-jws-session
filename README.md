@@ -20,7 +20,6 @@ npm install incache-jws-session --save
 ```
 
 ```javascript
-
 const Session = require('incache-jws-session')
 
 const config = {
@@ -32,8 +31,7 @@ const config = {
 const auth = new Session(config)
 ```
 
-##### Generate a new token passing the user ID and the user type
-With user type intends for example ‘root’, ‘admin’, ‘user’, ‘visitor’, etc
+##### Generate a new token passing the user ID and the user type for example ‘root’, ‘admin’, ‘user’, ‘visitor’, etc
 
 ```javascript
 const token = await auth.createToken(1, 'user')
@@ -42,10 +40,9 @@ const token = await auth.createToken(1, 'user')
 ##### Store the new session token
 
 ```javascript
-
 const session = {
   user: 1,
-  token,
+  token: 'your token string',
   exp: new Date().getTime() + 1,
   type: 'user'
 }
