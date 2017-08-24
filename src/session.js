@@ -95,14 +95,9 @@ class Session {
 
   /**
    * decodeToken return the information crypted inside the token
-   * @param  {type}   token description
+   * @param  {string}   token string
    * @return {Object} contain serverHost, expiration date and an identificator
    */
-    /**
-     *
-     * @param token
-     * @returns {Promise.<boolean>}
-     */
   async decodeToken(token) {
   	let decoded = false
     try {
