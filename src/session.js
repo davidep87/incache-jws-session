@@ -1,8 +1,7 @@
 const jws = require('jws')
 const InCache = require('incache')
-const store = new InCache({
-    storeName: 'jws-session'
-})
+const store = new InCache({ autoSave: true, autoSaveMode: 'timer' })
+
 const TOKEN_NOT_VALID = 'Token is not valid'
 
 class Session {
@@ -109,8 +108,7 @@ class Session {
       await jws.verify(String(token), 'HS256', String(this.secret))
   		decoded = await jws.decode(token)
   		decoded = JSON.parse(decoded.payload)
-  	}
-  	catch(error) {
+  	} catch(error) {
       if(error){
         return false
       }
@@ -118,6 +116,14 @@ class Session {
   	return decoded
   }
 
+  /**
+   * retrieveKey return the information crypted inside the token
+   * @param  {key}     id that we want search
+   * @return {object}  return value or error
+   */
+  retrieveKey(key) {
+    return store.get(key)
+  }
 }
 
 module.exports = Session

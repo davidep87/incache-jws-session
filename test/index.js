@@ -81,6 +81,15 @@ describe('check', function() {
   });
 });
 
+describe('retrieveKey', function() {
+  it('should return an object', async () => {
+    let key = `user-1`
+    let result = auth.retrieveKey(key)
+    console.log(result)
+    assert.equal(result.hasOwnProperty('token'), true)
+  });
+});
+
 describe('deleteToken', function() {
   it('should remove a token', async () => {
     await auth.deleteToken(token)
