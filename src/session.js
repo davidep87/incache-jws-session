@@ -24,7 +24,8 @@ class Session {
    * @param  {int}    session.exp expiration time of token
    */
   insert(session){
-    store.set(`${session.type}-${session.user}`, session)
+    let expires = `${new Date(session.exp).toLocaleDateString()} ${new Date(session.exp).toLocaleTimeString()}`
+    store.set(`${session.type}-${session.user}`, session, { expires })
   }
 
   /**
